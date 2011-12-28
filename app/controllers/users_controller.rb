@@ -4,6 +4,20 @@ class UsersController < ApplicationController
   def index
     @users = User.all
 
+    cielo = Payment::Cielo.new
+    @cielo_authorize = cielo.authorize
+        
+    master = Payment::Mastercard.new
+    @master_authorize = master.authorize
+        
+    computer = Demo1::Computer.new(42)
+    
+    # block = Demo1::BlockDemo1.new
+    @block_message = Demo1::BlockDemo1::MESSAGE
+    
+    @module_message = Demo1::MESSAGE    
+    
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }
