@@ -4,6 +4,7 @@ module Dsl
   class FirstDsl < Dsl::Base
 
     def initialize
+      
       setup do
         puts "bloco de setup......1"
       end
@@ -30,6 +31,11 @@ module Dsl
 end
 
 
-
-
-st = Dsl::FirstDsl.new.run
+# 
+# 
+# st = Dsl::FirstDsl.new
+# 
+# st.run
+# 
+# puts "Setups: #{st.setups.length}"
+# puts "Events: #{st.events}"
