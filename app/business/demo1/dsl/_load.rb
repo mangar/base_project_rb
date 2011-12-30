@@ -1,34 +1,42 @@
-module Kernel
-  def setup (&block)
-    @setups << block
-  end  
-  def event(name, &block)
-    @events[name] = block
+lambda {
+  _setups = []
+  _events = {}
+  
+  Kernel.send :define_method, :setup do |&block|
+    _setups << block
   end
-end
+  Kernel.send :define_method, :setups do 
+    _setups
+  end
+
+  Kernel.send :define_method, :event do |name, &block|
+    _events[name] = block
+  end
+  Kernel.send :define_method, :events do
+    _events
+  end
+  
+}.call
 
 
 Dir.glob('*events.rb').each { |file| 
   puts "loading .. #{file}" 
   
-  @events = {}
-  @setups = []  
-  
   load file
   
-  puts "setups: #{@setups}"
+  puts "setups: #{setups}"
   puts "events:"  
-  @events.each_pair { |k,v| 
+  events.each_pair { |k,v| 
     puts "         -> #{k} : #{v}"
   }
   
   puts "Running setups....."
-  @setups.each { |setup|
+  setups.each { |setup|
     setup.call
   }
   
   puts "... running events ..."
-  @events.each_pair { |k, block|
+  events.each_pair { |k, block|
     puts "Event: #{k}, running...."
     block.call
     

@@ -2,7 +2,6 @@ setup do
   puts "setup....."
 end
 
-
 event "puts first" do
   puts "1st........."
 end
