@@ -13,9 +13,10 @@ class UsersController < ApplicationController
     computer = Demo1::Computer.new(42)
     
     # block = Demo1::BlockDemo1.new
-    @block_message = Demo1::BlockDemo1::MESSAGE
-    
+    @class_message = Demo1::Block::BlockDemo1::MESSAGE
+    @block_message = Demo1::Block::MESSAGE
     @module_message = Demo1::MESSAGE    
+    
     
 
     respond_to do |format|
