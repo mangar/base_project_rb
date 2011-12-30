@@ -2,7 +2,7 @@ require "#{File.dirname(__FILE__)}/base.rb"
 
 module Dsl
   class FirstDsl < Dsl::Base
-    
+
     def initialize
       setup do
         puts "bloco de setup......1"
